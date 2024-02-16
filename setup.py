@@ -17,6 +17,7 @@ setup(
         'Pillow',
         'scikit-image',
         'scikit-learn',
+        'tensorflow',
     ],
 )
 
