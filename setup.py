@@ -13,5 +13,10 @@ setup(
     packages=find_packages(),
     install_requires=[
         'numpy',
+        'matplotlib',
+        'Pillow',
+        'scikit-image',
+        'scikit-learn',
     ],
 )
+
