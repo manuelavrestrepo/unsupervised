@@ -7,16 +7,21 @@ Este es un archivo temporal.
 
 import numpy as np
 
+
 class KMeans:
-    def __init__(self, n_clusters, max_iters=1000, tol=1e-5):
+    def __init__(self, n_clusters, max_iters=1000, tol=1e-5, random_seed=333):
         self.n_clusters = n_clusters
         self.max_iters = max_iters
         self.tol = tol
         self.centroids = None
         self.labels = None
+        self.random_seed = random_seed  # Nueva variable para la semilla
         
     def fit(self, X):
         n_samples, n_features = X.shape
+        
+        # Establecer la semilla para la generación de números aleatorios
+        np.random.seed(self.random_seed)
         
         # Initialize centroids randomly
         idx = np.random.choice(n_samples, self.n_clusters, replace=False)

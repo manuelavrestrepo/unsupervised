@@ -30,10 +30,16 @@ class KMedoids:
             new_medoid_indices = np.zeros(self.n_clusters, dtype=int)
             for j in range(self.n_clusters):
                 cluster_points = X[self.labels == j]
-                distances_to_points = np.sum(np.abs(cluster_points - cluster_points[:, np.newaxis]), axis=2)
-                total_distances = np.sum(distances_to_points, axis=1)
-                new_medoid_indices[j] = np.argmin(total_distances)
                 
+                if len(cluster_points) > 0:
+                    distances_to_points = np.sum(np.abs(cluster_points - cluster_points[:, np.newaxis]), axis=2)
+                    total_distances = np.sum(distances_to_points, axis=1)
+                    new_medoid_indices[j] = np.argmin(total_distances)
+                else:
+                    # Handle the case when the cluster is empty
+                    print(f"Cluster {j} is empty. Reinitializing medoid.")
+                    new_medoid_indices[j] = np.random.choice(n_samples)
+                        
             # Check for convergence
             if np.array_equal(new_medoid_indices, self.medoid_indices):
                 break
