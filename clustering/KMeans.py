@@ -42,7 +42,10 @@ class KMeans:
                 break
                 
             self.centroids = new_centroids
-            
+    
+    def cluster_centers(self):
+        return self.centroids
+    
     def predict(self, X):
         distances = self._calc_distances(X)
         return np.argmin(distances, axis=1)
